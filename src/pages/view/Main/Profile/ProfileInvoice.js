@@ -30,7 +30,7 @@ const ProfileInvoice = ({ litsInvoice, invoiceAct,user,userAct }) => {
     useEffect(() => {
       fetchInvoice();
       
-    }, [fetchInvoice,user]);
+    }, [fetchInvoice,isModal]);
   
   const handleOk = (e) => {
     setIsModal(false);
@@ -78,7 +78,6 @@ console.log(litsInvoice)
       title: "Ngày đặt",
       dataIndex: "invoiceInfo",
       render: (text, record) => {
-        
         if(litsInvoice.length>0){
         return   <span >{text.createdAt}</span>
         }
@@ -99,6 +98,9 @@ console.log(litsInvoice)
           }
           if(text.status==='watched'){
             return <span >Đang xử lý</span>;
+          }
+          if(text.status==='cancel'){
+            return <span >Đã hủy</span>;
           }
           else{
             return <span >{text.status}</span>;

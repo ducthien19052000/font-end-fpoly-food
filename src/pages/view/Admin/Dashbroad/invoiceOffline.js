@@ -56,6 +56,7 @@ const InvoiceOffline = ({ key }) => {
             title: "Mã đơn hàng",
             key:"name",
             dataIndex: "",
+            width: '20%',
             render: (text, record) => {
 
                 return <span>{record.id}</span>;
@@ -65,6 +66,7 @@ const InvoiceOffline = ({ key }) => {
         {
             title: "Danh sách món ăn",
             dataIndex: "",
+            with:'30%',
             render: (text, record) => {
           
               return  <ListProduct id={record.id}/>
@@ -77,6 +79,7 @@ const InvoiceOffline = ({ key }) => {
         {
             title: "Ngày đặt hàng",
             dataIndex: "",
+            width: '20%',
             render: (text, record) => {
 
                 return <span>{record.createdAt}</span>;
@@ -87,6 +90,7 @@ const InvoiceOffline = ({ key }) => {
         {
             title: "Tổng tiền",
             dataIndex: "",
+            width: '20%',
             render: (text, record) => {
 
                 return <span>{record.amountTotal} đ</span>;

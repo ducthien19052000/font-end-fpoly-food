@@ -2,7 +2,7 @@ import { Button, Col, Image, Modal, Row, Table } from "antd";
 import confirm from "antd/lib/modal/confirm";
 import React, { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../../../constants";
-import {ExclamationCircleOutlined} from '@ant-design/icons'
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 const InvoiceDetail = ({
   visible,
@@ -13,7 +13,7 @@ const InvoiceDetail = ({
 }) => {
   const [data, setData] = useState(null);
   useEffect(() => {
-    fetch(API_BASE_URL+`/invoice/details/${id}`)
+    fetch(API_BASE_URL + `/invoice/details/${id}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
@@ -29,70 +29,67 @@ const InvoiceDetail = ({
     {
       title: "",
       dataIndex: "",
-      render: (text, record) => 
-      <img src={record.productInfo.image} style={{ width: "96px" }} />
+      render: (text, record) => (
+        <img src={record.productInfo.image} style={{ width: "96px" }} />
+      ),
     },
     {
       title: "Tên món ăn",
       dataIndex: "",
-      render: (text, record) => 
-       
-            <span style={{ fontWeight: "bold" }}>{record.productInfo.productName}</span>
-          
+      render: (text, record) => (
+        <span style={{ fontWeight: "bold" }}>
+          {record.productInfo.productName}
+        </span>
+      ),
     },
     {
       title: "Giá",
       dataIndex: "",
-      render: (text, record) => 
-       
-            <span style={{ fontWeight: "bold" }}>{record.productInfo.price}</span>
-          
+      render: (text, record) => (
+        <span style={{ fontWeight: "bold" }}>{record.productInfo.price}</span>
+      ),
     },
     {
       title: "Số lượng",
       dataIndex: "",
-      render: (text, record) => 
-       
-            <span style={{ fontWeight: "bold" }}>{record.productInfo.quantity}</span>
-          
+      render: (text, record) => (
+        <span style={{ fontWeight: "bold" }}>
+          {record.productInfo.quantity}
+        </span>
+      ),
     },
     {
       title: "Thành tiền",
       dataIndex: "",
-      render: (text, record) => 
-       
-            <span style={{ fontWeight: "bold" }}>{record.productInfo.amount}</span>
-          
+      render: (text, record) => (
+        <span style={{ fontWeight: "bold" }}>{record.productInfo.amount}</span>
+      ),
     },
-   
   ];
-  const handleCancelInvoice=()=>{
+  const handleCancelInvoice = () => {
     confirm({
-      title: 'Xác nhận',
+      title: "Xác nhận",
       icon: <ExclamationCircleOutlined />,
-      content: 'Nhận đơn hàng',
-      okText: 'Có',
-      cancelText: 'Không',
-      onOk(){
-        fetch(API_BASE_URL+`/invoice/cancel/${id}`)
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.error) {
-            throw res.error;
-          }
-          setData(res.body);
-    
-          return res;
-        })
-        .catch((error) => {});
-        handleCancel()
-      }
-  
-  }
-    )
-   
-  }
- 
+      content: "Nhận đơn hàng",
+      okText: "Có",
+      cancelText: "Không",
+      onOk() {
+        fetch(API_BASE_URL + `/invoice/cancel/${id}`)
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.error) {
+              throw res.error;
+            }
+            setData(res.body);
+
+            return res;
+          })
+          .catch((error) => {});
+        handleCancel();
+      },
+    });
+  };
+
   return (
     <Modal
       title="Chi tiết"
@@ -148,23 +145,29 @@ const InvoiceDetail = ({
                 <p> {data.invoiceInfo.amountTotal}</p>
               </Row>
               <Row style={{ paddingBottom: "5px" }}>
-              {data.invoiceInfo.status!=='finish'&&
-              <> <Col span={12}>
-              <div style={{}}>
-                <Button
-                  onClick={() => handleChangeActive(id)}
-                  type="primary"
-                >
-                  Nhận đơn hàng
-                </Button>
-              </div>
-            </Col>
-            <Col span={12}>
-              <div style={{ padding: "0 10px" }}>
-                <Button onClick={()=>handleCancelInvoice(id)}>Hủy đơn hàng</Button>
-              </div>
-            </Col></>}
-            
+                {(data.invoiceInfo.status === "watched" ||
+                  data.invoiceInfo.status === "new") && (
+                    <>
+                    {" "}
+                    <Col span={12}>
+                      <div style={{}}>
+                        <Button
+                          onClick={() => handleChangeActive(id)}
+                          type="primary"
+                        >
+                          Nhận đơn hàng
+                        </Button>
+                      </div>
+                    </Col>
+                    <Col span={12}>
+                      <div style={{ padding: "0 10px" }}>
+                        <Button onClick={() => handleCancelInvoice(id)}>
+                          Hủy đơn hàng
+                        </Button>
+                      </div>
+                    </Col>
+                  </>
+                )}
                
               </Row>
             </div>
@@ -181,8 +184,6 @@ const InvoiceDetail = ({
               }}
               dataSource={data.cartProduct}
             />
-
-           
           </Col>
         </Row>
       )}

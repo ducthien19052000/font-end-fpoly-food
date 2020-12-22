@@ -1,5 +1,8 @@
-import { Button, Col, Image, Modal, Row, Table } from "antd";
+import { Button, Col, Image, Modal, notification, Row, Table } from "antd";
+import confirm from "antd/lib/modal/confirm";
 import React from "react";
+import {ExclamationCircleOutlined} from '@ant-design/icons'
+import { API_BASE_URL } from "../../../../constants";
 
 const InvoiceDetailUser = ({
     visible,
@@ -50,6 +53,36 @@ const InvoiceDetailUser = ({
         },
 
     ];
+    const handleCancelInvoice=()=>{
+        confirm({
+            title: 'Xác nhận',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Nhận đơn hàng',
+            okText: 'Có',
+            cancelText: 'Không',
+            onOk(){
+              fetch(API_BASE_URL+`/invoice/cancel/${data.invoiceInfo.id}`)
+              .then((res) => res.json())
+              .then((res) => {
+                if (res.error) {
+                  throw res.error;
+                }
+                notification['success']({
+                    message: 'Thông báo',
+                    description:
+                      'Đã hủy đơn hàng'
+                })
+             handleCancel()
+          
+                return res;
+              })
+              .catch((error) => {});
+              handleCancel()
+            }
+        
+        }
+          )
+    }
    
     return (
         <Modal
@@ -91,7 +124,7 @@ const InvoiceDetailUser = ({
                                 <p style={{ width: "100%", margin: 0, fontWeight: "bold" }}>
                                     Thời gian đặt hàng{" "}
                                 </p>
-                                <p> time</p>
+                                <p>  {data.invoiceInfo.createdAt}</p>
                             </Row>
                             <Row>
                                 <p style={{ width: "100%", margin: 0, fontWeight: "bold" }}>
@@ -106,9 +139,9 @@ const InvoiceDetailUser = ({
                                 <p> {data.invoiceInfo.amountTotal}</p>
                             </Row>
                             <Row style={{ paddingBottom: "5px" }}>
-                                {(data.invoiceInfo.status === "Đang_xử_lý" || data.invoiceInfo.status === "Chưa_sử_lý") && <Col span={12}>
+                                {(data.invoiceInfo.status === "watched" || data.invoiceInfo.status === "new") && <Col span={12}>
                                     <div style={{ padding: "0 10px" }}>
-                                        <Button>Hủy đơn hàng</Button>
+                                        <Button onClick={()=>handleCancelInvoice()}>Hủy đơn hàng</Button>
                                     </div>
                                 </Col>}
 

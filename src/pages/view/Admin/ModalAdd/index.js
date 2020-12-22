@@ -52,7 +52,7 @@ const ModalAddEmployee = ({
     // đẩy ảnh lên đường dẫn trên
     storageRef.put(file).then(function () {
       storageRef.getDownloadURL().then((url) => {
-          console.log(url);
+          
             // Tạo object mới chứa toàn bộ thông tin từ input
         const newData = {  
           ...data,
