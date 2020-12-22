@@ -1,0 +1,44 @@
+.user-info-container{
+    padding: 24px 12px;
+    padding-bottom: 36px;
+}
+.rowProfile1{
+    margin-left: -8px;
+    margin-right: -8px
+}
+.menuItemProfile{
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+.menuItemProfile:active{
+    border-right: 4px solid rgb(235, 113, 0);
+    color: rgb(235, 113, 0);
+    background-color: rgb(255, 228, 204) !important;
+}
+.cardProfileUser{
+    background: white;
+    border-radius: 4px;
+}
+.col-search-food-invoice{
+    padding: 10px;
+}
+.spanTitleProfile{
+    font-size: 20px;
+    color: rgb(22, 22, 29);
+    font-weight: 500;
+}
+.user-profile{
+    padding: 22px;
+}
+.spanTitleOrderTrue{
+    font-weight: 500;
+    color: rgb(0, 121, 63);
+    font-size: 20px;
+    cursor: pointer;
+}
+.spanTitleOrderFalse{
+    font-weight: 500;
+    font-size: 20px;
+    color: rgb(120, 120, 120);
+    cursor: pointer;
+}

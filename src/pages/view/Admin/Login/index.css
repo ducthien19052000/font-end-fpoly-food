@@ -1,0 +1,45 @@
+
+.container-Login{
+    height: 100vh !important;
+    font-size: 20px;
+}
+.login-form{
+        
+
+}
+.slide-login{
+    height: 100vh;
+}
+.imageback{
+        width: 100%;
+        height: 100vh;
+        /* background-image: url('https://tse1.explicit.bing.net/th?id=OIP.l16uVQ6JdZikUBg8nMgUaAHaCv&pid=Api&P=0&w=442&h=164'); */
+}
+.contentStyle{
+        height: 100vh;
+        color: #fff;
+        width: 100%;
+        /* line-height: 160px; */
+       text-align : center;
+        background-image: url('http://en.dangcongsan.vn/DATA/3/2016/09/bta_bl18092016_am_thuc-10_16_00_786.jpg');
+        background-size: cover;
+    background-position:center;
+
+}
+.col-formLogin{
+    align-items: center!important;
+    justify-content: center;
+    display: flex !important;
+}
+.logo{
+    margin-bottom: 3rem ;
+    height: 100px;
+    width: 97px;
+    background: url('https://rawcdn.githack.com/0967517236/logo/ef0e157fad4e3cb3ea124767a47ad84fe03c5d74/logo.jpg');
+}
+.col-input-form-login{
+    padding: 10px;
+}
+.input-login{
+    border-radius: 5px;
+}

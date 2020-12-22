@@ -1,0 +1,11 @@
+.colDashboard{
+    padding: 10px !important;
+    font-size: 2.2rem;
+    color: #72777a;
+}
+.layerTotal{
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,.0625)!important;
+    border-radius: 4px;
+    padding: 20px!important;
+}

@@ -1,0 +1,121 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    margin: auto;
+ }
+  .pagination ul {
+    list-style: none;
+    padding: 0px;
+    display: flex;
+ }
+  .pagination ul li {
+    background: #F8F8FF;
+    padding: 10px 15px;
+    margin-right: 4px;
+    border: 2px solid #009ACD;
+    border-radius: 4px ;
+    
+    color: #337ab7;
+    font-size: 1.5rem;
+    min-width: 10px;
+    text-align: center;
+    user-select: none;
+ }
+  .pagination ul li:last-child {
+    margin-right: 0px;
+ }
+  .pagination ul li:not(.active):not(.disabled) {
+    cursor: pointer;
+ }
+  .pagination ul li:not(.active):not(.disabled):hover {
+    color: #fff;
+    background: #00B2EE;
+ }
+  .pagination ul li:not(.active):not(.disabled):active {
+    background: #F8F8FF;
+ }
+  .pagination ul li.active {
+    color: #fff;
+    background: #00B2EE;
+ }
+  .pagination ul li.disabled {
+    border: 2px solid #F8F8FF;
+    color: #F8F8FF;
+    background: #fbeaff;
+    pointer-events: none;
+ }
+ .spanTitleNoteAdmin{
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 3.6rem;
+ }
+ .form-item-admin-cart{
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+ }
+ .ant-table-thead > tr > th {
+   color: rgba(0, 0, 0, 0.85);
+   font-weight: 500;
+   text-align: left;
+   font-size: 1.8rem;
+ 
+}
+.ant-table-tbody > tr > td {
+ font-size: 1.6rem;
+}
+ .ant-form-item-label > label {
+   position: relative;
+   display: -ms-inline-flexbox;
+   display: inline-flex;
+   -ms-flex-align: center;
+   align-items: center;
+   height: 32px;
+   color: rgba(0, 0, 0, 0.85);
+   font-size: 1.6rem;
+   font-weight: 500;
+}
+.checkOutAdmin{
+   font-size: 1.6rem;
+   font-weight: 500;
+   
+}
+
+
+.dasboarh .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab:first-child{
+   background-color: rgb(230, 230, 0);
+   color: white;
+   font-size: 16px;
+   font-weight: 500;
+
+}
+.dasboarh .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab:nth-child(2){
+   background-color:rgb(204, 0, 0);
+   color: white;
+   font-size: 16px;
+   font-weight: 500;
+
+}
+.dasboarh .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab:nth-child(3){
+   background-color: rgb(45, 185, 45);
+   color: white;
+   font-size: 16px;
+   font-weight: 500;
+
+}
+.dasboarh .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab:active{
+  color: white !important; 
+ 
+   background-color: white;
+}
+.dasboarh .ant-tabs-tab-active{
+   border: 2px solid black !important;
+   border-radius: 4px !important;
+   color: white !important;
+}
+.dasboarh .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+   color: black;
+   font-weight: 500;
+}
+

@@ -1,0 +1,32 @@
+.span-topping{
+    white-space: nowrap; 
+    width: 8rem; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  
+}
+.span-detail-item{
+    cursor: pointer;
+
+}
+.spanShowQuantity{
+    margin: 0 !important;
+}
+.rowImageEditCart{
+    padding-bottom: 10px;
+   border-bottom: 1px solid springgreen;
+}
+.rowCartChangeTopping{
+    width: 100%;
+    /* text-align: center; */
+    background-color: #eeeeee;
+    font-size: 16px;
+    font-weight: 500;
+    
+    margin-top: 20px;
+    align-items: center;
+
+}
+.cart__header{
+ justify-content: center;
+}

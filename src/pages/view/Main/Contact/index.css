@@ -1,0 +1,27 @@
+.contactWrapped{
+
+min-height: 100vh;
+padding: 40px 0;
+    background-image: url('https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/82/2016/12/07015051/5.-Restaurants-phuquocseafoodrestaurant-promotionaloffers-localphuquocmarketdinner1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.colContainer{
+    background-color: white;
+    padding: 60px;
+    border-radius: 4px;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.05);
+}
+.btnContact{
+    background-color: #00793f;
+    border-radius: 4px;
+    display: flex;
+    color: white;
+    height: 48px;
+    border-color: #00793f;
+    padding: 0 56px;
+    font-size: 20px;
+    cursor: pointer;
+    align-items: center;
+    border: 1px solid;
+}
