@@ -34,8 +34,8 @@ const Category = ({foodAct,categoryAct,litsFoot,listGroup,cart,AddToCart,onDelet
       onDeletePrToCart(product,topping);
     };
     const handleChange= (value)=>{
-      console.log(value)
-        }
+      history.push(`/category/${value}`)
+   }
 
     useEffect(()=>{
       fetch(API_BASE_URL+`/product/?productName=&status=&categoryId=${id}&size=10&page=0`, {

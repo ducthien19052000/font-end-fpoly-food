@@ -57,7 +57,7 @@ const Product = ({ foodAct, categoryAct, litsFoot, listGroup, onDeletePrToCart,c
     }
   };
   const handleChange= (value)=>{
-console.log(value)
+     history.push(`/category/${value}`)
   }
     const onSearch = (value) => history.push(`/search/${value}`);
   return (
@@ -73,7 +73,7 @@ console.log(value)
                 <Col span={18} push={6}>
                   <Select defaultValue="Menu" style={{ width: 120 }} onChange={handleChange}>
                     {listGroup.map((category, index) => (
-                      <Option value={category.categoryName} key={index}>
+                      <Option value={category.id} key={index}>
                         <Link  to={`/category/${category.id}`}>{category.categoryName}</Link>
                       </Option>
                     ))}
