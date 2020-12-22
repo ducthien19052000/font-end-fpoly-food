@@ -44,7 +44,7 @@ function* fetchListFoodGroup(id) {
 function* SagaAddData(data){
 
     const isLogin = localStorage.getItem('islogin')
-
+    
     try {
         const requestAdd = yield fetch(API_BASE_URL+`/product/`,{
             method: 'POST',
@@ -104,7 +104,7 @@ function* SagaEditData(data){
             body: JSON.stringify(data.payload.list)
         })
         const responeEdit = yield requestEdit.json();
-        
+        console.log(responeEdit)
         yield put (editDataSuccess(responeEdit));   
     } catch (error) {
         console.log(error);

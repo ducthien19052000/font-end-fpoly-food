@@ -43,7 +43,7 @@ const ModalAddEmployee = ({
   const formRef = useRef(null);
 
   const onFinish = (user) => {
-      console.log(user)
+     
     const data = {...user.product, status: "A" };
     let file = user.product.image.fileList[0].originFileObj;
     // tạo folder chứa ảnh trên firesbase
@@ -56,7 +56,7 @@ const ModalAddEmployee = ({
             // Tạo object mới chứa toàn bộ thông tin từ input
         const newData = {  
           ...data,
-          image: file
+          image: url
       }
       // đẩy dữ liệu ra ngoài app.js thông qua props onAdd
       addFood(newData);

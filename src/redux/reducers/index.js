@@ -10,7 +10,7 @@ import menuReducer from './menuReducer';
 import cartAdmin from './cartAdminReducer';
 import invoiceUserReducer from './invoiceBookReducer'
 import CartBook from './cartBookReducer';
-
+import Id from './idReducer'
 const { combineReducers } = require("redux");
 
 const rootReducer = combineReducers({
@@ -25,6 +25,7 @@ const rootReducer = combineReducers({
     menuData:menuReducer,
     cartAdminData:cartAdmin,
     invoiceUser:invoiceUserReducer,
-    CartBookData: CartBook
+    CartBookData: CartBook,
+    IdData:Id
 });
 export default rootReducer;

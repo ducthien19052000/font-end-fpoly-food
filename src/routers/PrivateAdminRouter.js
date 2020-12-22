@@ -5,20 +5,28 @@ import { Redirect, Route } from "react-router-dom";
 
 
 
-function PrivateRouterAdmin({ component: Component, ...rest }) {
+function PrivateRouterAdmin({ component: Component,check:check, ...rest }) {
  
-  
+  console.log(check)
     const isLogin = localStorage.getItem('islogin')
-
-
   return (
     <>
     <Route
       {...rest}
       render={props =>{
         if(isLogin){
+            if(check){
+              return (<Component {...props} />)
+            }
+            else{
+              notification["warning"]({
+                message: "Thông báo",
+                duration: 2,
+                description: "Bạn không có quyền truy cập",
+              });
+              return  <Redirect to="/admin/"/>
+            }
            
-            return (<Component {...props} />)
         }
         else{
             

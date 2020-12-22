@@ -3,11 +3,12 @@ import { Button, Col, Form, Input, notification, Pagination, Row, Select, Table,
 import { useForm } from 'antd/lib/form/Form';
 import confirm from 'antd/lib/modal/confirm';
 import Modal from 'antd/lib/modal/Modal';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { API_BASE_URL } from '../../../../constants';
 import { addToCart, deleteAllCart, getNumbers, removeToCart, updateToCart } from '../../../../redux/Action/cartBookingAction';
+import { deleteAllId } from '../../../../redux/Action/idAction';
 import * as foodAction from '../../../../redux/Action/index';
 import * as invoiceUserAction from '../../../../redux/Action/invoiceBookAction';
 import './index.css';
@@ -16,22 +17,25 @@ import UpdateCartBook from './updateCartBook';
 
 
 
-const EditInvoiceBook = ({ products, onDeletePrToCart, onDeleteAllToCart, invoice, onGetDataCart,onUpdatePrToCart, isModalVisible, handleCancel, handleOk, cart }) => {
+const EditInvoiceBook = ({ products, onDeletePrToCart,idData, onDeleteAllToCart,onDeleteId, invoice,handleEdit, onGetDataCart,onUpdatePrToCart, isModalVisible, handleCancel, handleOk, cart }) => {
 
 
     const [isModal, setIsModal] = useState(false);
     const [productCurrent,setProductCurrent] = useState()
+    const [idd,setId]=useState()
     const [currentPage, setCurrentPage] = useState(1);
     const prsPerPage = 4;
     const indexOfLastPost = currentPage * prsPerPage;
     const indexOfFirtPost = indexOfLastPost - prsPerPage;
     const [form] = useForm()
-    // useEffect(()=>{
-    //     onGetDataCart(invoice.cartProduct)
-    // },[])
- 
+   
+    useEffect(()=>{
+       setId(invoice.invoiceInfo.id)
+    },[])
+  
     const user = {name:invoice.invoiceInfo.users.name,phone:invoice.invoiceInfo.phone,address:invoice.invoiceInfo.deliveryAddress,description:invoice.invoiceInfo.description}
     form.setFieldsValue(user)
+    
     const handleRemoveItemCart = (product, topping) => {
         onDeletePrToCart(product, topping);
         notification["success"]({
@@ -184,35 +188,12 @@ const EditInvoiceBook = ({ products, onDeletePrToCart, onDeleteAllToCart, invoic
             note: item.note
         }
     })
-   
+//    console.log(invoice)
     const onFinish = values => {
+        console.log(idData)
         const amount = showAmount(cart)
         const data = { amountTotal: amount, paymentMethods: "Trả khi nhận hàng", cartRequests: cartRequests, fullName: values.name, phone: values.phone,deliveryAddress:values.address,description:values.description,email:user.email }
-      
-        fetch(API_BASE_URL + `/order-by-date/${invoice.invoiceInfo.id}`, {
-            method: "PUT",
-            headers: new Headers({
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            }),
-            body: JSON.stringify(data),
-        })
-            .then((res) => res.json())
-            .then((res) => {
-                if (res.error) {
-                    throw res.error;
-                }
-                onDeleteAllToCart([])
-                notification["success"]({
-                    message: "",
-                    duration: 2,
-                    description: "Cập nhật hóa đơn thành công",
-                });
-                handleCancel()
-
-                return res;
-            })
-            .catch((error) => { });
+      handleEdit(data)
 
     };
     ///showTotalPrice
@@ -366,7 +347,8 @@ const mapStateToProps = (state) => {
     return {
         litsFood: state.foodData.lists,
         cart: state.CartBookData,
-        invoiceUser: state.invoiceUser
+        invoiceUser: state.invoiceUser,
+        idData:state.IdData
     };
 };
 
@@ -376,6 +358,9 @@ const mapDispatchToProps = (dispatch) => {
         invoiceAct: bindActionCreators(invoiceUserAction, dispatch),
         onGetDataCart: (data) => {
             dispatch(getNumbers(data))
+        },
+        onDeleteId:(data)=>{
+            dispatch(deleteAllId(data))
         },
         onDeletePrToCart: (product, topping) => {
             dispatch(removeToCart(product, topping));

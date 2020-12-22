@@ -11,14 +11,12 @@ const ModalEditTopping = ({ isModal, handleOk, handleCancel,product ,editFood}) 
     const data ={name:product.name,price:product.price}
     form.setFieldsValue({menu:data})
   
-console.log(product)
  
     const onFinish = values => {
         
-        const data ={ ...values.menu}
-    
+        const data ={ ...values.menu,status:'A'}
             editFood(data,product.id);
-        handleCancel()
+        
         
     };
     return (

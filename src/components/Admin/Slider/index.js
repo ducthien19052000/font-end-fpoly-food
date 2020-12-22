@@ -16,7 +16,7 @@ const Slider = () => {
     const { SubMenu } = Menu;
     const [collapsed,setCollapsed] = useState(false)
    
-    
+    const role =  localStorage.getItem('role');
     const  toggle = () => {
        setCollapsed(!collapsed)
       };
@@ -38,36 +38,40 @@ const Slider = () => {
                 </Link>
                 
             </Menu.Item>
-            <Menu.Item key="6" icon={<PieChartOutlined />}>
+           {role==='ADMIN'&& <Menu.Item key="6" icon={<PieChartOutlined />}>
                 <Link to='/admin/statistics'>
                 Thống kê
                 </Link>
                 
-            </Menu.Item>
+            </Menu.Item>}
+            {role==='ADMIN'&&
             <Menu.Item key="2" icon={<DesktopOutlined />}>
                 <Link to='/admin/food'>
                 Sản phẩm
                 </Link>
               
-            </Menu.Item>
+            </Menu.Item>}
+            {role==='ADMIN'&&
             <Menu.Item key="7" icon={<PieChartOutlined />}>
                 <Link to='/admin/topping'>
                 Món ăn kèm
                 </Link>
                 
-            </Menu.Item>
+            </Menu.Item>}
+            {role==='ADMIN'&&
             <Menu.Item key="3" icon={<FileOutlined />}>
             <Link to='/admin/category' >
             Danh mục
                 </Link>
               
-            </Menu.Item> 
+            </Menu.Item> }
+            {role==='ADMIN'&&
             <Menu.Item key="4" icon={<FileOutlined />}>
             <Link to='/admin/menu' >
             Thực đơn
                 </Link>
               
-            </Menu.Item> 
+            </Menu.Item> }
             <Menu.Item key="5" icon={<FileOutlined />}>
             <Link to='/admin/invoice'>
             Đơn hàng

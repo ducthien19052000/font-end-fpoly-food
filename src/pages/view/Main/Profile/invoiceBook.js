@@ -74,7 +74,8 @@ const InvoiceBook = ({ foodAct, invoiceAct,cart,user, onDeletePrToCart, litsFood
 
                 {invoiceUser.length>0?
                   invoiceUser.map((item,index)=>(
-                    <InvoiceBookItem products={litsFood} invoice={item} key={index} fetchInvoice={fetchInvoice} isModalVisible={isModalVisibleEdit} handleCancel={handleCancelEdit} handleOk={handleOk} showModal={showModalEdit}/> 
+                    <InvoiceBookItem products={litsFood} invoice={item} id ={item.invoiceInfo.id} key={index} fetchInvoice={fetchInvoice} isModalVisible={isModalVisibleEdit} handleCancel={handleCancelEdit} handleOk={handleOk} showModal={showModalEdit}/> 
+                    
                ))
                :''
                 

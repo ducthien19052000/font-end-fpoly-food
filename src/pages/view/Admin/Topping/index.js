@@ -1,5 +1,5 @@
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
-import { Button, Col, Input, Row, Table } from "antd";
+import { Button, Col, Input, notification, Row, Table } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -43,9 +43,28 @@ const Topping = ({ menuAct, listGroup }) => {
     fetchmenu();
   }, [fetchmenu,isModal,isModalEdit]);
 
-  const handleRemovemenu=(id) =>{
-    const {deleteData} = menuAct;
-    deleteData(id);
+  const handleRemoveTopping=(id) =>{
+    fetch(API_BASE_URL + `/topping/${id}`, {
+      method: "DELETE",
+      headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+      })
+  })
+      .then((res) => res.json())
+      .then((res) => {
+          if (res.error) {
+              throw res.error;
+          }
+          fetchmenu()
+          notification['success']({
+            message: 'Thông báo',
+            description:
+              'Xóa thành công'
+        })
+          return res;
+      })
+      .catch((error) => { });
     
   }
   const onchange = e => {
@@ -71,15 +90,57 @@ const Topping = ({ menuAct, listGroup }) => {
     setIsModalEdit(false);
   };
 
-  const handleAddFood = (data) =>{
-    const {addData} = menuAct;
-    addData(data);
-    // handleCancel()  
+  const handleAddFood=(data)=>{
+    console.log(data)
+    fetch(API_BASE_URL + `/topping/`, {
+      method: "POST",
+      headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+      }),
+      body:JSON.stringify(data)
+  })
+      .then((res) => res.json())
+      .then((res) => {
+          if (res.error) {
+              throw res.error;
+          }
+        
+          handleCancel()
+          notification['success']({
+            message: 'Thông báo',
+            description:
+              'Thêm thành công'
+        })
+          return res;
+      })
+      .catch((error) => { });
+  
   }
   const handleEditFood=(data,id)=>{
-    const {editData} = menuAct;
-    editData(data,id);
-    handleCancel()
+    fetch(API_BASE_URL + `/topping/${id}`, {
+      method: "PUT",
+      headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+      }),
+      body:JSON.stringify(data)
+  })
+      .then((res) => res.json())
+      .then((res) => {
+          if (res.error) {
+              throw res.error;
+          }
+          handleCancelEdit()
+          notification['success']({
+            message: 'Thông báo',
+            description:
+              'Sửa thành công'
+        })
+          return res;
+      })
+      .catch((error) => { });
+  
   }
   const showModalEdit=(data)=>{
     setProductEdit(data)
@@ -108,7 +169,7 @@ const Topping = ({ menuAct, listGroup }) => {
         <>
           {" "}
           <>
-            <Button onClick={()=>handleRemovemenu(record.id)}>
+            <Button onClick={()=>handleRemoveTopping(record.id)}>
               <DeleteFilled />
             </Button>
             <Button  onClick={()=>showModalEdit(record)}>

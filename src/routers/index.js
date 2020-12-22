@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
 
@@ -31,11 +31,15 @@ import PrivateRoute from "./PrivateRouter";
 
 
 const Routers = () => {
-  // if(isLogin){
-  //     setCheck(true)
-  // }
-  // else(setCheck(false))
-
+  const [checkRole,setCheckRole]=useState(false)
+  const role=localStorage.getItem('role')
+  useEffect(()=>{
+    if(role==='ADMIN'){
+      setCheckRole(true)
+    }
+  },[])
+ 
+  
   return (
     <Router>
       <Switch>
@@ -45,24 +49,24 @@ const Routers = () => {
         <Route path="/admin/:path?/:path?" exact>
           <MainAdmin>
             <Switch>
-              <PrivateAdminRoute path='/admin/' component={Dashboard} exact>
+              <PrivateAdminRoute path='/admin/' check={true} component={Dashboard} exact>
                
               </PrivateAdminRoute>
-              <PrivateAdminRoute path="/admin/statistics" component={Statistics} >
+              <PrivateAdminRoute path="/admin/statistics" check={checkRole} component={Statistics} >
              
               </PrivateAdminRoute>
-              <PrivateAdminRoute path='/admin/topping' component={Topping}>
+              <PrivateAdminRoute path='/admin/topping' check={checkRole} component={Topping}>
 
               </PrivateAdminRoute>
-              <PrivateAdminRoute path="/admin/food"component={Food} >
+              <PrivateAdminRoute path="/admin/food" check={checkRole} component={Food} >
               </PrivateAdminRoute>
 
-              <PrivateAdminRoute path="/admin/category" component={CategoryAdmin}>
+              <PrivateAdminRoute path="/admin/category" check={checkRole} component={CategoryAdmin}>
               </PrivateAdminRoute>
-              <PrivateAdminRoute path="/admin/menu" component={MenuAdmin} >
+              <PrivateAdminRoute path="/admin/menu" check={checkRole} component={MenuAdmin} >
              
               </PrivateAdminRoute>
-              <PrivateAdminRoute path="/admin/invoice" component={Invoice}>
+              <PrivateAdminRoute path="/admin/invoice" check={true} component={Invoice}>
               </PrivateAdminRoute>
             </Switch>
           </MainAdmin>
@@ -108,6 +112,7 @@ const Routers = () => {
             </Switch>
           </Main>
         </Route>
+        
       </Switch>
     </Router>
   );

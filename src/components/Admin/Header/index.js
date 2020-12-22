@@ -1,5 +1,5 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Button, Col, Divider, Dropdown, Layout, Popconfirm, Row } from 'antd';
+import { Button, Col, Divider, Dropdown, Layout, Row } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -14,6 +14,8 @@ const Header = () => {
     const history = useHistory();
     function confirm() {
         localStorage.removeItem("islogin");
+        localStorage.removeItem("role");
+
         history.push("/admin/login")
     }
     const { Header } = Layout;
@@ -27,15 +29,13 @@ const Header = () => {
                     <Col span={18}>
                         <p>Name</p>
                         <p>Email</p>
-                        <Button type='primary' style={{ borderRadius: '50px' }}>Hồ sơ</Button>
+                    
                     </Col>
 
                 </Row>
                 <Divider style={{ margin: '10px 0' }} />
                 <Row style={{ padding: '0px 0px 5px 10px' }}>
-                    <Popconfirm placement="top" title='Bạn có muốn đăng xuất' onConfirm={confirm} okText="Có" cancelText="Không">
-                        <Button>Log out</Button>
-                    </Popconfirm>
+                        <Button onClick={confirm}>Log out</Button>
                 </Row>
             </Col>
         </Row>

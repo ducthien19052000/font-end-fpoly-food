@@ -14,7 +14,7 @@ const ModalAddTopping = ({ isModal, handleOk,category, handleCancel ,addFood}) =
         const data ={ ...user.menu,status:'A'}
     
         addFood(data);
-        handleCancel()
+        
         
     };
     return (

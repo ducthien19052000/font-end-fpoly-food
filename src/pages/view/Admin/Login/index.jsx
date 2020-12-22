@@ -17,6 +17,8 @@ const Login = ({ loginAct, isLogin }) => {
         .then(response => {
           console.log(response)
             localStorage.setItem('islogin', response.accessToken);
+            localStorage.setItem('role', response.role);
+
            alert('Đăng nhập thành công')
            history.push('/admin/')
         }).catch(error => {
