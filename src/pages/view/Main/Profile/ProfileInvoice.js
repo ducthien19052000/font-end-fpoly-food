@@ -171,7 +171,7 @@ console.log(litsInvoice)
                 >
                   {change?
                   <>  <span className="spanTitleOrderFalse" onClick={()=>setChange(false)}>
-                  Đơn hàng đang xử lý
+                  Danh sách đơn hàng
                 </span>
                 <span className="spanTitleOrderTrue" onClick={()=>setChange(true)}>
                   {" "}
